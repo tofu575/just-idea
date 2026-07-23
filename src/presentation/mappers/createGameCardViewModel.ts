@@ -1,6 +1,41 @@
 import type { GameCard } from '../../domain/models/card/GameCard';
+import type { CardColorAmount } from '../../domain/models/card/CardColorAmount';
 import { CardEffectKind } from '../../domain/models/card/effects/CardEffect';
-import type { GameCardViewModel } from '../models/GameCardViewModel';
+import type {
+  CardComponentHint,
+  GameCardViewModel,
+} from '../models/GameCardViewModel';
+
+type ComponentLabels = Readonly<{
+  red: CardComponentHint['channel'];
+  green: CardComponentHint['channel'];
+  blue: CardComponentHint['channel'];
+}>;
+
+// 最大成分との比率から、カード内の各成分を3段階の相対強度へ変換する。
+function createComponentHints(
+  amount: CardColorAmount,
+  labels: ComponentLabels,
+): readonly CardComponentHint[] {
+  const components = [
+    { channel: labels.red, amount: amount.red },
+    { channel: labels.green, amount: amount.green },
+    { channel: labels.blue, amount: amount.blue },
+  ].filter((component) => component.amount > 0);
+  const maximumAmount = Math.max(
+    ...components.map((component) => component.amount),
+  );
+
+  return components.map((component) => ({
+    channel: component.channel,
+    strength:
+      component.amount === maximumAmount
+        ? 3
+        : component.amount * 2 >= maximumAmount
+          ? 2
+          : 1,
+  }));
+}
 
 // 未対応Effectをコンパイル時と実行時の両方で検出する。
 function assertNever(value: never): never {
@@ -16,12 +51,22 @@ export function createGameCardViewModel(card: GameCard): GameCardViewModel {
         id: card.id,
         titleKey: 'cards.addColor',
         backgroundColor: `rgb(${effect.amount.color.red}, ${effect.amount.color.green}, ${effect.amount.color.blue})`,
+        componentHints: createComponentHints(effect.amount, {
+          red: 'R',
+          green: 'G',
+          blue: 'B',
+        }),
       };
     case CardEffectKind.SubtractColor:
       return {
         id: card.id,
         titleKey: 'cards.subtractColor',
         backgroundColor: `rgb(${255 - effect.amount.color.red}, ${255 - effect.amount.color.green}, ${255 - effect.amount.color.blue})`,
+        componentHints: createComponentHints(effect.amount, {
+          red: 'C',
+          green: 'M',
+          blue: 'Y',
+        }),
       };
     case CardEffectKind.AdjustChannels: {
       const changes = Object.entries(effect.delta).filter(

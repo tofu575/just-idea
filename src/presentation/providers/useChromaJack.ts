@@ -50,6 +50,7 @@ export function useChromaJack(rules: GameRules) {
     maximumScore:
       engine.current.rules.totalRounds *
       engine.current.rules.scorePolicy.maximumScore,
+    scoreTarget: engine.current.rules.scorePolicy.target,
     beginGame,
     acceptCard,
     discardOffer,

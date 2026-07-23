@@ -17,6 +17,11 @@ describe('createGameCardViewModel', () => {
 
     expect(viewModel.backgroundColor).toBe('rgb(10, 20, 30)');
     expect(viewModel.titleKey).toBe('cards.addColor');
+    expect(viewModel.componentHints).toEqual([
+      { channel: 'R', strength: 1 },
+      { channel: 'G', strength: 2 },
+      { channel: 'B', strength: 3 },
+    ]);
   });
 
   it('CMY減算量をカード面のRGB色へ変換する', () => {
@@ -26,6 +31,11 @@ describe('createGameCardViewModel', () => {
 
     expect(viewModel.backgroundColor).toBe('rgb(155, 235, 245)');
     expect(viewModel.titleKey).toBe('cards.subtractColor');
+    expect(viewModel.componentHints).toEqual([
+      { channel: 'C', strength: 3 },
+      { channel: 'M', strength: 1 },
+      { channel: 'Y', strength: 1 },
+    ]);
   });
 
   it('特殊効果をPresentation固有の色と模様へ変換する', () => {

@@ -2,11 +2,13 @@ import { useEffect, useRef } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import type { RoundResult as RoundResultModel } from '../../domain/models/game/Round';
+import type { ScoreTarget } from '../../domain/models/rules/ScorePolicy';
 import { ColorValueSummary } from './ColorValueSummary';
 
 type RoundResultProps = {
   result: RoundResultModel;
   isLastRound: boolean;
+  scoreTarget: ScoreTarget;
   onContinue: () => void;
 };
 
@@ -14,6 +16,7 @@ type RoundResultProps = {
 export function RoundResult({
   result,
   isLastRound,
+  scoreTarget,
   onContinue,
 }: RoundResultProps) {
   const { t, i18n } = useTranslation();
@@ -85,6 +88,7 @@ export function RoundResult({
         label={
           didBurst ? t('roundResult.burstColor') : t('roundResult.finalColor')
         }
+        target={scoreTarget}
       />
       <Button
         variant="contained"

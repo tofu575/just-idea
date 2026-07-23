@@ -4,6 +4,7 @@ import { Color } from '../../domain/models/color/Color';
 import { ColorChannel } from '../../domain/models/color/ColorChannel';
 import type { RoundResult as RoundResultModel } from '../../domain/models/game/Round';
 import { Hand } from '../../domain/models/hand/Hand';
+import { ScoreTarget } from '../../domain/models/rules/ScorePolicy';
 import { AppProviders } from '../providers/AppProviders';
 import { RoundResult } from './RoundResult';
 import {
@@ -17,10 +18,18 @@ function createHand(red: number, green: number, blue: number): Hand {
   return new Hand(color);
 }
 
-function renderResult(result: RoundResultModel) {
+function renderResult(
+  result: RoundResultModel,
+  scoreTarget = ScoreTarget.White,
+) {
   render(
     <AppProviders>
-      <RoundResult result={result} isLastRound={false} onContinue={vi.fn()} />
+      <RoundResult
+        result={result}
+        isLastRound={false}
+        scoreTarget={scoreTarget}
+        onContinue={vi.fn()}
+      />
     </AppProviders>,
   );
 }
@@ -59,5 +68,25 @@ describe('RoundResult', () => {
     expect(values).toHaveTextContent('G11');
     expect(values).toHaveTextContent('B11');
     expect(screen.getByText('1色バースト')).toBeInTheDocument();
+  });
+
+  it('CMY減算ルールでは確定色をCMY値で表示する', () => {
+    renderResult(
+      {
+        roundNumber: createRoundNumber(1),
+        finalHand: createHand(155, 235, 245),
+        burstHand: null,
+        burstChannels: null,
+        score: createRoundScore(100),
+        endReason: 'stood',
+      },
+      ScoreTarget.Black,
+    );
+
+    const values = screen.getByLabelText('確定した色の数値');
+    expect(values).toHaveTextContent('C100');
+    expect(values).toHaveTextContent('M20');
+    expect(values).toHaveTextContent('Y10');
+    expect(values).not.toHaveTextContent('R');
   });
 });

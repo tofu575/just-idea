@@ -1,4 +1,4 @@
-import { Box, ButtonBase, Typography } from '@mui/material';
+import { Box, ButtonBase, Stack, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import type { GameCardViewModel } from '../models/GameCardViewModel';
 
@@ -46,6 +46,37 @@ export function GameCardView({
           },
         }}
       />
+      {card.componentHints && (
+        <Stack
+          direction="row"
+          spacing={0.5}
+          sx={{ mt: 0.75, flexWrap: 'wrap', rowGap: 0.5 }}
+        >
+          {card.componentHints.map((hint) => (
+            <Box
+              key={hint.channel}
+              aria-label={t('cards.componentHint', {
+                channel: hint.channel,
+                strength: hint.strength,
+              })}
+              sx={{
+                px: { xs: 0.75, sm: 1 },
+                py: 0.25,
+                border: '1px solid',
+                borderColor: 'divider',
+                borderRadius: 999,
+                bgcolor: 'background.paper',
+                fontSize: { xs: '0.7rem', sm: '0.75rem' },
+                fontWeight: 700,
+                lineHeight: 1.5,
+              }}
+            >
+              {hint.channel}
+              {'+'.repeat(hint.strength)}
+            </Box>
+          ))}
+        </Stack>
+      )}
     </Box>
   );
 }

@@ -46,7 +46,13 @@
     "discard": "Discard all choices",
     "stand": "Stand",
     "revealedColorValues": "Current values revealed by card effect",
-    "burstPrevention": "{{count}} burst prevention available"
+    "burstPrevention": "{{count}} burst prevention available",
+    "channelRisk": {
+      "heading": "Channel risk",
+      "safe": "Safe",
+      "risk": "Risk",
+      "danger": "Danger"
+    }
   },
   "cards": {
     "addColor": "Add RGB",
@@ -57,6 +63,7 @@
     "adjustBrightness": "Adjust brightness",
     "revealColorValues": "Reveal values",
     "preventBurst": "Prevent burst",
+    "componentHint": "{{channel}} component, strength level {{strength}}",
     "details": {
       "increaseChannels": "Increase {{channel}}",
       "decreaseChannels": "Decrease {{channel}}",

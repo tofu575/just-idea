@@ -2,17 +2,20 @@ import { Box, Container, Stack, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import type { GameState } from '../../domain/models/game/Game';
 import type { GameCardId } from '../../domain/models/card/GameCardId';
+import type { ScoreTarget } from '../../domain/models/rules/ScorePolicy';
 import { ActionButtons } from '../widgets/ActionButtons';
 import { CardOffer } from '../widgets/CardOffer';
 import { ColorPanel } from '../widgets/ColorPanel';
 import { GameStatus } from '../widgets/GameStatus';
 import { RoundResult } from '../widgets/RoundResult';
 import { ColorValueSummary } from '../widgets/ColorValueSummary';
+import { ColorRiskSummary } from '../widgets/ColorRiskSummary';
 
 type GamePageProps = {
   game: GameState;
   totalRounds: number;
   totalScore: number;
+  scoreTarget: ScoreTarget;
   onAccept: (cardId: GameCardId) => void;
   onDiscard: () => void;
   onStand: () => void;
@@ -24,6 +27,7 @@ export function GamePage({
   game,
   totalRounds,
   totalScore,
+  scoreTarget,
   onAccept,
   onDiscard,
   onStand,
@@ -49,10 +53,14 @@ export function GamePage({
       />
       <Stack sx={{ mt: 3 }}>
         {displayedColor && <ColorPanel color={displayedColor} />}
+        {game.phase === 'playing' && round && (
+          <ColorRiskSummary color={round.hand.color} target={scoreTarget} />
+        )}
         {game.phase === 'playing' && round?.revealsColorValues && (
           <ColorValueSummary
             color={round.hand.color}
             label={t('game.revealedColorValues')}
+            target={scoreTarget}
           />
         )}
         {game.phase === 'playing' && round && round.offeredCards.length > 0 && (
@@ -103,6 +111,7 @@ export function GamePage({
           <RoundResult
             result={result}
             isLastRound={round?.roundNumber.value === totalRounds}
+            scoreTarget={scoreTarget}
             onContinue={onContinue}
           />
         )}

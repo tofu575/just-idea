@@ -46,7 +46,13 @@
     "discard": "候補をすべて捨てる",
     "stand": "ここで止める",
     "revealedColorValues": "カード効果で解禁された現在値",
-    "burstPrevention": "バースト防止 {{count}}回"
+    "burstPrevention": "バースト防止 {{count}}回",
+    "channelRisk": {
+      "heading": "成分の危険度",
+      "safe": "余裕あり",
+      "risk": "注意",
+      "danger": "危険"
+    }
   },
   "cards": {
     "addColor": "RGB加算",
@@ -57,6 +63,7 @@
     "adjustBrightness": "明度操作",
     "revealColorValues": "数値表示",
     "preventBurst": "バースト防止",
+    "componentHint": "{{channel}}成分、強さ{{strength}}段階",
     "details": {
       "increaseChannels": "{{channel}}を増やす",
       "decreaseChannels": "{{channel}}を減らす",

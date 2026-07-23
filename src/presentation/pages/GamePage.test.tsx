@@ -8,6 +8,7 @@ import { Hand } from '../../domain/models/hand/Hand';
 import { AppProviders } from '../providers/AppProviders';
 import { GamePage } from './GamePage';
 import type { RoundResult } from '../../domain/models/game/Round';
+import { ScoreTarget } from '../../domain/models/rules/ScorePolicy';
 import {
   createAddColorCard,
   createRoundNumber,
@@ -66,6 +67,7 @@ describe('GamePage', () => {
           game={game}
           totalRounds={5}
           totalScore={0}
+          scoreTarget={ScoreTarget.White}
           onAccept={vi.fn()}
           onDiscard={vi.fn()}
           onStand={vi.fn()}
@@ -86,6 +88,7 @@ describe('GamePage', () => {
           game={createContinuedGame()}
           totalRounds={5}
           totalScore={0}
+          scoreTarget={ScoreTarget.White}
           onAccept={vi.fn()}
           onDiscard={vi.fn()}
           onStand={vi.fn()}
@@ -106,6 +109,7 @@ describe('GamePage', () => {
           game={createContinuedGame(true)}
           totalRounds={5}
           totalScore={0}
+          scoreTarget={ScoreTarget.White}
           onAccept={vi.fn()}
           onDiscard={vi.fn()}
           onStand={vi.fn()}
@@ -117,5 +121,30 @@ describe('GamePage', () => {
     expect(
       screen.getByLabelText('カード効果で解禁された現在値の数値'),
     ).toBeInTheDocument();
+  });
+
+  it('現在色の各成分を数値なしの3段階危険度で表示する', () => {
+    render(
+      <AppProviders>
+        <GamePage
+          game={createContinuedGame()}
+          totalRounds={5}
+          totalScore={0}
+          scoreTarget={ScoreTarget.White}
+          onAccept={vi.fn()}
+          onDiscard={vi.fn()}
+          onStand={vi.fn()}
+          onContinue={vi.fn()}
+        />
+      </AppProviders>,
+    );
+
+    expect(
+      screen.getByRole('heading', { name: '成分の危険度' }),
+    ).toBeInTheDocument();
+    expect(screen.getAllByText('危険')).toHaveLength(1);
+    expect(screen.getAllByText('余裕あり')).toHaveLength(2);
+    expect(screen.getByLabelText('R成分、強さ3段階')).toBeInTheDocument();
+    expect(screen.queryByText('255')).not.toBeInTheDocument();
   });
 });
