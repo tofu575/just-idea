@@ -1,0 +1,247 @@
+:root {
+  font-family: "Noto Sans CJK JP", "Yu Gothic", sans-serif;
+  color: #27342f;
+  background: #f4f5f3;
+  font-synthesis: none;
+  font-weight: 400;
+  line-height: 1.6;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+main {
+  max-width: 1080px;
+  margin: auto;
+  padding: 64px 40px 32px;
+}
+header {
+  margin-bottom: 36px;
+}
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: #68786e;
+}
+h1 {
+  font-family: "Noto Serif CJK JP", "Yu Mincho", serif;
+  font-size: 42px;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin: 14px 0 12px;
+}
+h1 span {
+  font-family: Georgia, serif;
+  font-size: 19px;
+  letter-spacing: 0.015em;
+  color: #718077;
+  margin-left: 22px;
+}
+header p {
+  font-size: 14px;
+  color: #68746e;
+  line-height: 1.9;
+  margin: 0;
+}
+.mobile-break {
+  display: none;
+}
+.preview {
+  background: #f7f8f6;
+  border: 1px solid #d9dfd9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.preview-meta,
+.preview-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 20px 26px;
+  color: #77847c;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.preview-meta > span:first-child {
+  letter-spacing: 0.17em;
+}
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2.5;
+}
+.preview-footer {
+  font-size: 10px;
+}
+.controls {
+  padding: 30px 0 0;
+}
+.input-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.input-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 12px;
+  min-width: 160px;
+}
+.text-field {
+  flex: 1;
+}
+textarea,
+select {
+  font: inherit;
+  font-size: 16px;
+  color: inherit;
+  background: #fff;
+  border: 1px solid #d0d8d1;
+  border-radius: 4px;
+  padding: 11px 14px;
+  width: 100%;
+  min-height: 49px;
+}
+textarea {
+  resize: vertical;
+}
+select {
+  cursor: pointer;
+}
+.progress-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+output {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  color: #2453b1;
+}
+output span {
+  font-family: sans-serif;
+  font-size: 13px;
+  margin-left: 4px;
+}
+input[type="range"] {
+  width: 100%;
+  margin: 14px 0 6px;
+  accent-color: #2453b1;
+  cursor: pointer;
+  height: 28px;
+  touch-action: pan-y;
+}
+.scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #7b877f;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+button {
+  border: 1px solid #cbd5cc;
+  border-radius: 4px;
+  background: transparent;
+  padding: 12px 20px;
+  min-height: 46px;
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+button:hover {
+  background: #e8ede7;
+}
+button.primary {
+  background: #2453b1;
+  color: white;
+  border-color: #2453b1;
+  margin-left: auto;
+}
+button.primary:hover {
+  background: #1b4290;
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: wait;
+}
+:focus-visible {
+  outline: 3px solid #94b5e5;
+  outline-offset: 4px;
+}
+#status {
+  font-size: 11px;
+  color: #68776c;
+  min-height: 1.6em;
+  margin: 16px 0;
+}
+footer {
+  border-top: 1px solid #dce2db;
+  padding-top: 22px;
+  margin-top: 24px;
+  font-size: 10px;
+  color: #7c887f;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+@media (max-width: 640px) {
+  main {
+    padding: 32px 20px 24px;
+  }
+  h1 {
+    font-size: 32px;
+  }
+  h1 span {
+    display: block;
+    margin: 6px 0 0;
+    font-size: 16px;
+  }
+  .mobile-break {
+    display: block;
+  }
+  .preview-meta,
+  .preview-footer {
+    padding: 14px;
+    font-size: 9px;
+  }
+  .preview-footer {
+    font-size: 8px;
+  }
+  .input-row {
+    gap: 16px;
+    flex-direction: column;
+  }
+  .input-row label {
+    min-width: 0;
+  }
+  .actions {
+    gap: 8px;
+  }
+  .actions button {
+    flex: 1;
+    padding: 12px 10px;
+  }
+  .actions .primary {
+    flex-basis: 100%;
+    margin: 0;
+  }
+  footer {
+    flex-direction: column;
+    gap: 4px;
+  }
+  header {
+    margin-bottom: 24px;
+  }
+}

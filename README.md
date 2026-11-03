@@ -2,9 +2,10 @@
 
 思いついたアイデアを、それぞれ独立したWebアプリとして実現するリポジトリです。
 
-| アプリ | 概要 | 開発手順 |
-| --- | --- | --- |
-| Chroma Jack | 色の判断で白を目指すゲーム | [apps/chroma-jack](apps/chroma-jack/README.md) |
+| アプリ                 | 概要                             | 開発手順                                         |
+| ---------------------- | -------------------------------- | ------------------------------------------------ |
+| Chroma Jack            | 色の判断で白を目指すゲーム       | [apps/chroma-jack](apps/chroma-jack/README.md)   |
+| 文字風化シミュレーター | 輪郭から文字が風化する過程を観察 | [apps/text-erosion](apps/text-erosion/README.md) |
 
 ## 開発
 
