@@ -4,6 +4,7 @@
 - Read the selected app's README and AGENTS.md before changing it.
 - Keep app dependencies, build outputs, and domain-specific conventions within that app.
 - Run the selected app's documented checks from its directory. Update CI when adding an app.
+- When adding an app under `apps/`, update the root `index.html` links, the root README app/public URL lists, and the Pages workflow's install, checks, build base path, and output assembly. Publish each app under its own `<app-name>/` directory and keep the site root as the app index.
 - Preserve existing apps when implementing another idea.
 - Write concise Japanese overview comments for models, functions, and methods.
 - Use sub-agents only when the user explicitly requests delegation or parallel work.
