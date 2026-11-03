@@ -33,7 +33,7 @@ npm run build
 
 ## GitHub Pagesへの公開
 
-`.github/workflows/deploy-pages.yml` がPull Requestで品質チェックを実行し、`main`へのpushまたは手動実行でビルド結果をGitHub Pagesへ公開します。Pagesが返すベースパスをViteへ渡すため、リポジトリ配下のURLとカスタムドメインのどちらでもアセットの参照先が自動調整されます。
+`.github/workflows/deploy-pages.yml` がPull Requestで品質チェックを実行し、`main`へのpushまたは手動実行でビルド結果をGitHub Pagesへ公開します。Pagesが返すベースパスに `/chroma-jack/` を追加してViteへ渡すため、リポジトリ配下のURLとカスタムドメインのどちらでもアセットの参照先が自動調整されます。
 
 初回のみ、GitHubのリポジトリ画面で次の設定を行ってください。
 
@@ -41,7 +41,7 @@ npm run build
 2. `Build and deployment` の `Source` を `GitHub Actions` にする
 3. `main`へマージするか、`Actions`から`Test and deploy GitHub Pages`を手動実行する
 
-公開URLはWorkflowの`deploy`ジョブと、リポジトリの`Settings` → `Pages`に表示されます。
+公開URLはWorkflowの`deploy`ジョブと、リポジトリの`Settings` → `Pages`に表示されます。サイトのルートはアプリ一覧で、Chroma Jackは `https://tofu575.github.io/just-idea/chroma-jack/`、文字風化は `text-erosion/` に配置します。両アプリのテスト・ビルドが成功したときだけ、まとめて公開します。
 
 ## アーキテクチャ
 
