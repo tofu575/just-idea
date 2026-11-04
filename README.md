@@ -6,6 +6,7 @@
 | ---------------------- | -------------------------------- | ------------------------------------------------ |
 | Chroma Jack            | 色の判断で白を目指すゲーム       | [apps/chroma-jack](apps/chroma-jack/README.md)   |
 | 文字風化シミュレーター | 輪郭から文字が風化する過程を観察 | [apps/text-erosion](apps/text-erosion/README.md) |
+| Rain on Glass | 雨の窓で水滴の成長・合体・滑落を眺める | [apps/rain-on-glass](apps/rain-on-glass/README.md) |
 
 ## 開発
 
@@ -21,12 +22,13 @@ npm run dev
 
 ## GitHub Pagesへの公開
 
-`.github/workflows/deploy-pages.yml` が両アプリのテスト・ビルドと、Chroma Jackのlint・フォーマットチェックを実行します。PRでは検証のみ行い、`main`へのpushまたは`main`での手動実行で、両アプリを1つのPagesサイトとして公開します。
+`.github/workflows/deploy-pages.yml` が全アプリのテスト・ビルドと、Chroma Jackのlint・フォーマットチェックを実行します。PRでは検証のみ行い、`main`へのpushまたは`main`での手動実行で、全アプリを1つのPagesサイトとして公開します。
 
 | アプリ | 公開先 |
 | --- | --- |
 | アプリ一覧 | https://tofu575.github.io/just-idea/ |
 | Chroma Jack | https://tofu575.github.io/just-idea/chroma-jack/ |
 | 文字風化シミュレーター | https://tofu575.github.io/just-idea/text-erosion/ |
+| Rain on Glass | https://tofu575.github.io/just-idea/rain-on-glass/ |
 
-ルートの `index.html` を配信ルートに、各アプリのビルドを `chroma-jack/` と `text-erosion/` に配置します。従来のChroma JackのURLはアプリ一覧になります。両方の検証が成功した場合だけ公開するため、アプリ単独のデプロイで他方が消えることはありません。ベースパスはGitHub Pagesの設定から取得し、カスタムドメインでも同じ構成で配信します。リポジトリの `Settings` → `Pages` → `Source` は `GitHub Actions` に設定してください。
+ルートの `index.html` を配信ルートに、各アプリのビルドを `chroma-jack/`、`text-erosion/`、`rain-on-glass/` に配置します。従来のChroma JackのURLはアプリ一覧になります。全アプリの検証が成功した場合だけ公開するため、アプリ単独のデプロイでほかのアプリが消えることはありません。ベースパスはGitHub Pagesの設定から取得し、カスタムドメインでも同じ構成で配信します。リポジトリの `Settings` → `Pages` → `Source` は `GitHub Actions` に設定してください。

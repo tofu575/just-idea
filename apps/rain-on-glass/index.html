@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101b20" />
+    <meta
+      name="description"
+      content="静かな雨の窓。小さな水滴が育ち、重なり、ときどき滑り落ちる風景。"
+    />
+    <title>Rain on Glass — 静かな雨の窓</title>
+  </head>
+  <body>
+    <canvas id="glass" aria-label="街の明かりを屈折させる雨の窓"></canvas>
+    <div id="interface" class="awake">
+      <header class="identity">
+        <span class="eyebrow">A WINDOW, A MOMENT</span>
+        <h1>Rain on Glass<span>静かな雨の窓</span></h1>
+      </header>
+      <div class="scene-note" aria-hidden="true">
+        <span class="live-dot"></span> EVENING RAIN
+        <span class="note-rule"></span> NO TWO DROPS ALIKE
+      </div>
+      <nav class="toolbar" aria-label="鑑賞の操作">
+        <button
+          id="pause"
+          aria-label="一時停止"
+          title="一時停止 / 再開（Space）"
+        >
+          Ⅱ
+        </button>
+        <button
+          id="fullscreen"
+          aria-label="フルスクリーン"
+          title="フルスクリーン（F）"
+        >
+          ⛶
+        </button>
+        <span class="toolbar-rule"></span>
+        <button id="settings" aria-expanded="false" aria-controls="panel">
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 20 20"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M3 5h14M3 10h14M3 15h14M7 3v4m6 1v4m-5 1v4"
+              stroke="currentColor"
+              stroke-width="1.3"
+            /></svg
+          ><span>雨の調律</span>
+        </button>
+      </nav>
+    </div>
+    <aside id="panel" aria-labelledby="panel-title" hidden>
+      <div class="panel-heading">
+        <div>
+          <span class="eyebrow">ATMOSPHERE</span>
+          <h2 id="panel-title">雨の調律</h2>
+        </div>
+        <button id="close" aria-label="設定を閉じる">×</button>
+      </div>
+      <p class="intro">窓の向こうに、少しだけ耳を澄ませて。</p>
+      <div id="parameters"></div>
+      <label class="debug-toggle"
+        ><input id="debug" type="checkbox" /> 水滴の状態を表示</label
+      >
+      <div id="stats" role="status"></div>
+      <button id="reset" class="reset">静かな雨に戻す <span>↺</span></button>
+      <p class="shortcuts">
+        SPACE 再生 / 停止 <span>F 全画面</span><br />ESC 閉じる
+        <span>S 設定</span>
+      </p>
+      <p id="notice" role="status"></p>
+    </aside>
+    <div id="paused" hidden>PAUSED <span>Spaceで再開</span></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
