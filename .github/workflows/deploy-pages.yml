@@ -28,11 +28,13 @@ jobs:
           cache-dependency-path: |
             apps/chroma-jack/package-lock.json
             apps/text-erosion/package-lock.json
+            apps/rain-on-glass/package-lock.json
 
       - name: Install dependencies
         run: |
           npm ci --prefix apps/chroma-jack
           npm ci --prefix apps/text-erosion
+          npm ci --prefix apps/rain-on-glass
 
       - name: Check formatting
         run: npm run format:check --prefix apps/chroma-jack
@@ -44,6 +46,7 @@ jobs:
         run: |
           npm test --prefix apps/chroma-jack
           npm test --prefix apps/text-erosion
+          npm test --prefix apps/rain-on-glass
 
       - name: Configure GitHub Pages
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
@@ -56,13 +59,15 @@ jobs:
         run: |
           npm run build --prefix apps/chroma-jack -- --base "${PAGES_BASE_PATH}/chroma-jack/"
           npm run build --prefix apps/text-erosion -- --base "${PAGES_BASE_PATH}/text-erosion/"
+          npm run build --prefix apps/rain-on-glass -- --base "${PAGES_BASE_PATH}/rain-on-glass/"
 
       - name: Assemble GitHub Pages site
         run: |
-          mkdir -p _site/chroma-jack _site/text-erosion
+          mkdir -p _site/chroma-jack _site/text-erosion _site/rain-on-glass
           cp index.html _site/index.html
           cp -a apps/chroma-jack/dist/. _site/chroma-jack/
           cp -a apps/text-erosion/dist/. _site/text-erosion/
+          cp -a apps/rain-on-glass/dist/. _site/rain-on-glass/
 
       - name: Upload GitHub Pages artifact
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
